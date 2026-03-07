@@ -41,5 +41,4 @@ coverage/
 
 *.bat
 
-*/application.yaml
-*/*/application.yaml
+**/application.yaml
