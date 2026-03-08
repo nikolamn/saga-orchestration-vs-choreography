@@ -1,0 +1,2 @@
+-Set ddl-auto: none when switching to Flyway
+-Each service's yml configuration is environment agnostic, aka if no variable is found -> use fixed value for native, docker-less, development
