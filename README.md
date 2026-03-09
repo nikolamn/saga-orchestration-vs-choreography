@@ -1,4 +1,9 @@
-API Gateway
-Account Service
-Accommodations Service
-Reservations Service
+#  Microservice Spring Boot App
+
+### Services
+
+- **API Gateway Service**
+- **Auth Service**
+- **Account Service**
+- **Accommodations Service**
+- **Reservations Service**

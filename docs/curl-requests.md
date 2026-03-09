@@ -18,6 +18,10 @@ curl -X GET -i http://localhost:8080/actuator/health
 ```bash
 curl -X GET -i http://localhost:8080/auth/actuator/health
 curl -X GET -i http://localhost:8081/actuator/health
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"username":"nekoNovoIme13341","password":"strongPassword","role":"HOST"}' \
+    -i http://localhost:8081/auth/signup 
 ```
 
 ## Account Service
