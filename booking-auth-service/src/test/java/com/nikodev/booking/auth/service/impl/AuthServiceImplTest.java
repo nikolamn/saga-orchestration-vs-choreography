@@ -16,9 +16,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 
+import com.booking.auth.core.service.impl.AuthServiceImpl;
 import com.booking.auth.exception.JwtAuthenticationException;
-import com.booking.auth.security.TokenProvider;
-import com.booking.auth.service.impl.AuthServiceImpl;
+import com.booking.auth.infrastructure.security.TokenProvider;
 
 @ExtendWith(MockitoExtension.class)
 public class AuthServiceImplTest {

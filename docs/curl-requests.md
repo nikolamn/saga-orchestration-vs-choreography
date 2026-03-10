@@ -22,6 +22,8 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d '{"username":"nekoNovoIme13341","password":"strongPassword","role":"HOST"}' \
     -i http://localhost:8081/auth/signup 
+Grpc test
+curl -i http://localhost:8081/greet?name=Gaze
 ```
 
 ## Account Service

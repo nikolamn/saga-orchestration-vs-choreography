@@ -18,12 +18,14 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.booking.auth.domain.AuthUser;
-import com.booking.auth.dto.AuthRegisterRequest;
+import com.booking.auth.api.rest.dto.AuthRegisterRequest;
+import com.booking.auth.api.rest.mapper.AuthUserMapper;
+import com.booking.auth.core.domain.AuthUser;
+import com.booking.auth.core.repository.AuthUserRepository;
+import com.booking.auth.core.service.impl.AuthUserServiceImpl;
 import com.booking.auth.exception.DuplicateUserInfoException;
-import com.booking.auth.mapper.AuthUserMapper;
-import com.booking.auth.repository.AuthUserRepository;
-import com.booking.auth.service.impl.AuthUserServiceImpl;
+	
+
 
 @ExtendWith(MockitoExtension.class)
 public class AuthUserServiceImplTest {

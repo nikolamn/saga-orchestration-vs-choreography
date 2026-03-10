@@ -29,3 +29,13 @@ app:
     secret:
     expiration:
       minutes:
+grpc:
+  server:
+    port: 9090
+    address: 127.0.0.1
+    security:
+      enabled: false
+  client:
+    greeter-service:
+      address: 'static://localhost:9090'
+      negotiation-type: plaintext
