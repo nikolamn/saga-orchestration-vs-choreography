@@ -1,7 +1,7 @@
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'role') 
-        THEN CREATE TYPE ROLE AS ENUM ('UNAUTHENTICATED', 'HOST', 'GUEST');
+        THEN CREATE TYPE ROLE AS ENUM ('HOST', 'GUEST');
     END IF;
 END$$;
 

@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 public class SecurityConfig {
 
-	
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
@@ -36,5 +35,4 @@ public class SecurityConfig {
 	PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-
 }

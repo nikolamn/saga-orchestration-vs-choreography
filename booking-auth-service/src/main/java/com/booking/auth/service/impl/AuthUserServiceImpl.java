@@ -24,15 +24,12 @@ public class AuthUserServiceImpl implements AuthUserService {
 
 	@Override
 	public void saveAuthUser(AuthRegisterRequest dto) {
-		final String username = dto.getUsername();
-		final String password = dto.getPassword();
-
-		if (repository.existsByUsername(username)) {
+		if (repository.existsByUsername(dto.getUsername())) {
 			throw new DuplicateUserInfoException("USERNAME TAKEN");
 		}
 
 		AuthUser authUser = mapper.toDomain(dto);
-		authUser.setPasswordHash(passwordEncoder.encode(password));
+		authUser.setPasswordHash(passwordEncoder.encode(dto.getPassword()));
 
 		repository.save(authUser);
 	}

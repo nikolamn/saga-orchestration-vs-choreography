@@ -28,6 +28,10 @@ curl -X POST \
 ```bash
 curl -X GET -i http://localhost:8080/account/actuator/health
 curl -X GET -i http://localhost:8082/actuator/health
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{"authUserId":"dd24dcd7-44b0-4ac5-ad7a-adf941e64ce6","firstName":"Marko","lastName":"Markovic","gender":"MALE","birthDate":"1999-09-09","email":"marko@gmail"}' \
+    -i http://localhost:8082/account/create 
 ```
 
 ## Accommodation Service
