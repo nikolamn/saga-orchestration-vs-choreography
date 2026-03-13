@@ -1,0 +1,16 @@
+package com.booking.auth.core.enums;
+
+import com.booking.auth.exception.InvalidRoleException;
+
+public enum ERole {
+	
+	UNAUTHENTICATED, HOST, GUEST;
+
+	public static ERole toEnum(String role) {
+		try {
+			return ERole.valueOf(role.trim().toUpperCase());
+		} catch (Exception e) {
+			throw new InvalidRoleException("INVALID ROLE");
+		}
+	}
+}

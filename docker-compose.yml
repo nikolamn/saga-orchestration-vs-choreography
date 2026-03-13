@@ -22,10 +22,8 @@ services:
     networks:
       - booking-network
     depends_on:
-      # - auth_service_db
       auth-service-db:
         condition: service_healthy
-
   booking-account-service:
     image: booking-account-service:1.0
     container_name: booking-account-service
@@ -36,6 +34,11 @@ services:
       - ./.env
     ports:
       - "8082:8082"
+    networks:
+      - booking-network
+    depends_on:
+      account-service-db:
+        condition: service_healthy
   booking-accommodation-service:
     image: booking-accommodation-service:1.0
     container_name: booking-accommodation-service
@@ -62,14 +65,32 @@ services:
     container_name: auth-service-db
     environment:
       POSTGRES_DB: ${AUTH_DB_NAME}
-      POSTGRES_USER: ${AUTH_DB_USER}
-      POSTGRES_PASSWORD: ${AUTH_DB_PASSWORD}
+      POSTGRES_USER: ${DEFAULT_DB_USER}
+      POSTGRES_PASSWORD: ${DEFAULT_DB_PASSWORD}
     volumes:
       - auth-db-data:/var/lib/postgresql
     ports: 
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${AUTH_DB_USER} -d ${AUTH_DB_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DEFAULT_DB_USER} -d ${AUTH_DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - booking-network
+  account-service-db:
+    image: postgres:18.3-bookworm
+    container_name: account-service-db
+    environment:
+      POSTGRES_DB: ${ACCOUNT_DB_NAME}
+      POSTGRES_USER: ${DEFAULT_DB_USER}
+      POSTGRES_PASSWORD: ${DEFAULT_DB_PASSWORD}
+    volumes:
+      - account-db-data:/var/lib/postgresql
+    ports: 
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DEFAULT_DB_USER} -d ${ACCOUNT_DB_NAME}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -82,3 +103,4 @@ networks:
 
 volumes:
   auth-db-data:
+  account-db-data:

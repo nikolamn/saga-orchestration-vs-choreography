@@ -20,8 +20,30 @@ curl -X GET -i http://localhost:8080/auth/actuator/health
 curl -X GET -i http://localhost:8081/actuator/health
 curl -X POST \
     -H "Content-Type: application/json" \
-    -d '{"username":"nekoNovoIme13341","password":"strongPassword","role":"HOST"}' \
+    -d '{
+        "authUser": {
+            "username":"nekoNovoIme154323344",
+            "password":"strongPassword",
+            "role":"HOST"
+            },
+        "account": {
+            "firstName":"Marko",
+            "lastName":"Markovic",
+            "email":"marko@gmail.com",
+            "gender":"MALE",
+            "birthdate":"1990-10-10",
+            "address": {
+                "country":"Neverland",
+                "city":"Howling Abyss",
+                "street":"Unk Lane",
+                "number":"999999"
+            }
+        }
+    }' \
     -i http://localhost:8081/auth/signup 
+    
+Grpc test
+curl -i http://localhost:8081/greet?name=Gaze
 ```
 
 ## Account Service

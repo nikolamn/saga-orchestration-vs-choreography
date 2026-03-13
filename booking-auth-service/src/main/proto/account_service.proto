@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package com.booking.auth.grpc;
+
+import "google/protobuf/empty.proto";
+
+option java_multiple_files = true;
+option java_package = "com.booking.auth.grpc";
+option java_outer_classname = "AuthServiceProto";
+
+service AccountService {
+  rpc CreateAccount(AccountCreationRequest) returns (google.protobuf.Empty);
+}
+
+message AccountCreationRequest {
+  string auth_user_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string gender = 4;
+  string birthdate = 5;
+  string email = 6;
+  Address address = 7;
+}
+
+message Address {
+  string country = 1;
+  string city = 2;
+  string street = 3;
+  string number = 4;
+}
