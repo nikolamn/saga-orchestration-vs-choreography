@@ -1,4 +1,4 @@
-package com.booking.account.enums;
+package com.booking.account.core.enums;
 
 import com.booking.account.exception.InvalidGenderException;
 

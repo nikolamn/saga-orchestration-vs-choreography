@@ -14,7 +14,7 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	public ResponseEntity<String> handleInvalidArgument(MethodArgumentNotValidException ex) {
-		return ResponseEntity.badRequest().body("INVALID ARGUMENT");
+		return ResponseEntity.badRequest().body("INVALID ARGUMENT" + ex.getMessage());
 	}
 	
 	@ExceptionHandler(ConstraintViolationException.class)

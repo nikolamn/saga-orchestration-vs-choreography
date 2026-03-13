@@ -4,7 +4,9 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
 
+@Getter
 public class AccountDTO {
 
 	// basic validation, Account Service will validate AccountDTO properly
@@ -21,7 +23,7 @@ public class AccountDTO {
     private String gender;
 
 	@NotNull
-    private LocalDate birthDate;
+    private String birthdate;
 	
 	@NotNull
     private AddressDTO address;

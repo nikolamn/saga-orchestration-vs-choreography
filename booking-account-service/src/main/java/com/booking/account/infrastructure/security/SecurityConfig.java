@@ -1,4 +1,4 @@
-package com.booking.account.security;
+package com.booking.account.infrastructure.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

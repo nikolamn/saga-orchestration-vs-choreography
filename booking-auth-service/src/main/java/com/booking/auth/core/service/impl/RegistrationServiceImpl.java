@@ -1,5 +1,7 @@
 package com.booking.auth.core.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
 import com.booking.auth.api.grpc.client.AccountServiceClient;
@@ -17,25 +19,29 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	private final AuthUserService authUserService;
 	private final AuthService authService;
-	
+
 	private final AccountServiceClient accountService;
-	
+
 	@Override
-	public void signup(RegistrationRequest request) {
-//		authUserService.saveAuthUser(request);
- 
-//		String token = authService.authenticateAndGetToken(request.getUsername(), request.getPassword());
+	public String signup(RegistrationRequest request) {
 		
-		
+		UUID userId = authUserService.saveAuthUser(request.getAuthUser());
+
 		try {
-//		String resp = accountService.createAccount("aaa", "bbb", "ccc");
+			accountService.createAccount(request.getAccount(), userId);
+			
+			System.out.println("ACCOUNT CREATED: " + userId);
+			
+			String token = authService.authenticateAndGetToken(request.getAuthUser().getUsername(), request.getAuthUser().getPassword());
+
+			return token;
 			
 		} catch (Exception e) {
-//			authUserService.delete(userID);
-//			throw new RegistrationFailedEx(e);
+			authUserService.deleteAuthUser(userId);
+			
+			System.out.println("USER DELETED: " + userId);
+			
+			return "";
 		}
-
-//		System.out.println("RESPONSE FROM ACC SRV: " + resp);
-//		return resp;
 	}
 }

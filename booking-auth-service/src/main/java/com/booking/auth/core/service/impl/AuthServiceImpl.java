@@ -19,7 +19,9 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
     public String authenticateAndGetToken(String username, String password) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        Authentication authentication = authenticationManager
+        		.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        
         return tokenProvider.generate(authentication);
     }
 }

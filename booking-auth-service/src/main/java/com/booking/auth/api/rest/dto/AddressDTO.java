@@ -1,9 +1,20 @@
 package com.booking.auth.api.rest.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import lombok.Getter;
+
+@Getter
 public class AddressDTO {
 
+	@NotBlank
     private String country;
-    private String city;
-    private String street;
-    private String number;
+	
+	@NotBlank
+	private String city;
+    
+	@NotBlank
+	private String street;
+    
+	@NotBlank
+	private String number;
 }

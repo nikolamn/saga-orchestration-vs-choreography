@@ -4,5 +4,5 @@ import com.booking.auth.api.rest.dto.RegistrationRequest;
 
 public interface RegistrationService {
 
-	public void signup(RegistrationRequest request);
+	public String signup(RegistrationRequest request);
 }
