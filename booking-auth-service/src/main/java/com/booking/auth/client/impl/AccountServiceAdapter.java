@@ -1,16 +1,16 @@
-package com.booking.auth.client;
+package com.booking.auth.client.impl;
 
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.booking.auth.dto.AccountDTO;
+import com.booking.auth.client.AccountServicePort;
+import com.booking.auth.dto.common.AccountDTO;
 import com.booking.auth.exception.DuplicateUserInfoException;
 import com.booking.auth.exception.GrpcInvalidArgumentException;
 import com.booking.auth.grpc.AccountCreationRequest;
 import com.booking.auth.grpc.AccountServiceGrpc;
 import com.booking.auth.mapper.AccountMapper;
-import com.booking.auth.service.AccountServicePort;
 
 import io.grpc.StatusRuntimeException;
 import lombok.RequiredArgsConstructor;

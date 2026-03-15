@@ -1,4 +1,4 @@
-package com.booking.auth.repository;
+package com.booking.auth.repository.impl;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -6,12 +6,12 @@ import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.booking.auth.domain.AuthUser;
+import com.booking.auth.domain.User;
 
 @Repository
-public interface AuthUserRepositoryImpl extends JpaRepository<AuthUser, UUID> {
+public interface UserRepositoryImpl extends JpaRepository<User, UUID> {
 	
-	Optional<AuthUser> findByUsername(String username);
+	Optional<User> findByUsername(String username);
 	
 	boolean existsByUsername(String username);
 }

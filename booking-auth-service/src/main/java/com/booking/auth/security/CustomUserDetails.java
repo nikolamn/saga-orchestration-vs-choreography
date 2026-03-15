@@ -6,15 +6,21 @@ import java.util.UUID;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-public class CustomUserDetails implements UserDetails {
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+class CustomUserDetails implements UserDetails {
 
 	private static final long serialVersionUID = 1L; 
 	
-	private UUID id;
-	private String username;
-	private String password;
-	private Collection<? extends GrantedAuthority> authorities;
+	private final UUID id;
+	private final String username;
+	private final String password;
+	private final Collection<? extends GrantedAuthority> authorities;
 }

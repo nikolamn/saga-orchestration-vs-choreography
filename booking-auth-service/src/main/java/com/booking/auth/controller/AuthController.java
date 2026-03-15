@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.booking.auth.dto.RegistrationRequest;
+import com.booking.auth.dto.request.UserRegistrationRequest;
+import com.booking.auth.dto.response.UserAuthResponse;
 import com.booking.auth.service.RegistrationService;
 
 import jakarta.validation.Valid;
@@ -21,10 +22,11 @@ public class AuthController {
 	private final RegistrationService registrationService;
 	
 	@PostMapping("/signup")
-	public ResponseEntity<String> signup(@RequestBody @Valid RegistrationRequest request) {
+	public ResponseEntity<UserAuthResponse> signup(@RequestBody @Valid UserRegistrationRequest request) {
 		
 		String token =  registrationService.signup(request);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(token);
+		return ResponseEntity.status(HttpStatus.CREATED)
+	            .body(new UserAuthResponse(token));
 	}
 }

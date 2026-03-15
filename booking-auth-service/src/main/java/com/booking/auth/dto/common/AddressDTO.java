@@ -1,4 +1,4 @@
-package com.booking.auth.dto;
+package com.booking.auth.dto.common;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

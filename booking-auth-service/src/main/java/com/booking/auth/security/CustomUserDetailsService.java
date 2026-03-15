@@ -1,6 +1,5 @@
 package com.booking.auth.security;
 
-import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -9,9 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.booking.auth.domain.AuthUser;
-import com.booking.auth.mapper.AuthUserMapper;
-import com.booking.auth.service.AuthUserService;
+import com.booking.auth.domain.User;
+import com.booking.auth.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,16 +17,24 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private final AuthUserService service;
-    private final AuthUserMapper mapper;
+    private final UserService service;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
-        AuthUser authUser = service.getAuthUserByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format("USERNAME: %s NOT FOUND", username)));
+        User authUser = service.getByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format("USERNAME: %s not found", username)));
         
-        List<SimpleGrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(authUser.getRole().toString()));
-        
-        return mapper.toCustomAuthUserDetails(authUser, authorities);
+        return toUserDetails(authUser);
+    }
+
+    private CustomUserDetails toUserDetails(User user) {
+        List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+
+        return CustomUserDetails.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .password(user.getPasswordHash())
+                .authorities(authorities)
+                .build();
     }
 }

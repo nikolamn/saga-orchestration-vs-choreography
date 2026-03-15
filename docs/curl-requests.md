@@ -22,14 +22,14 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d '{
         "authUser": {
-            "username":"nekod4d331154999344",
+            "username":"n32354999344",
             "password":"strongPassword",
             "role":"HOST"
             },
         "account": {
             "firstName":"wewedfsdfsdsdss",
             "lastName":"fdfdsfsdfsdf",
-            "email":"11224111@gmail.com",
+            "email":"11116@gmail.com",
             "gender":"MALE",
             "birthdate":"1990-10-10",
             "address": {

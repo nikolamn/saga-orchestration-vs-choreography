@@ -19,16 +19,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "auth_user")
-public class AuthUser {
+public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
@@ -36,7 +38,7 @@ public class AuthUser {
 	private UUID id;
 	
     @NotBlank
-	@Size(min = 12, max = 20, message = "Username must containe between 12 and 20 characters")
+	@Size(min = 12, max = 20)
     @Column(name = "username", unique = true, nullable = false, length = 20)
 	private String username;
 	
@@ -44,7 +46,6 @@ public class AuthUser {
 	@Column(name = "password_hash", nullable = false, length = 255)
 	private String passwordHash;
 	
-	@Enumerated(EnumType.STRING)
 	@JdbcType(PostgreSQLEnumJdbcType.class)
 	@Column(name = "role", nullable = false)
 	private ERole role;
