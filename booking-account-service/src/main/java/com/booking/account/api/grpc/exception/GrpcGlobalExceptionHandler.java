@@ -25,7 +25,7 @@ public class GrpcGlobalExceptionHandler {
 				.withDescription(msg)
 				.asRuntimeException();
 	}
-	
+
 	@GrpcExceptionHandler(Exception.class)
 	public StatusRuntimeException handleGenericException(Exception ex) {
 		return Status.INTERNAL

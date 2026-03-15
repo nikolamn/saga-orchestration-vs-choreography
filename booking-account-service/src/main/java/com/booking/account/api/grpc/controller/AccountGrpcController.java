@@ -19,13 +19,9 @@ public class AccountGrpcController extends AccountServiceGrpc.AccountServiceImpl
 	public void createAccount(AccountCreationRequest request,
 			StreamObserver<Empty> responseObserver) {
 
-		System.out.println("GRPC REQUEST ARRIVED: " + request.getEmail());
-
 		service.registerAccount(request);
 
-		Empty response = Empty.newBuilder().build();
-
-		responseObserver.onNext(response);
+		responseObserver.onNext(Empty.newBuilder().build());
 		responseObserver.onCompleted();
 	}
 }

@@ -1,5 +1,6 @@
 package com.booking.account.core.application.impl;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -12,9 +13,7 @@ import com.booking.auth.grpc.AccountCreationRequest;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -24,6 +23,8 @@ public class AccountApplicationServiceImpl implements AccountApplicationService 
 	private final AccountService accountService;
 	private final AccountMapper mapper;
 
+	private final Validator validator;
+	
 	@Override
 	public void registerAccount(AccountCreationRequest request) {
 
@@ -35,14 +36,14 @@ public class AccountApplicationServiceImpl implements AccountApplicationService 
 	}
 
 	private void validateAccountDTO(AccountDTO dto) {
-		ValidatorFactory fastory = Validation.buildDefaultValidatorFactory();
-		Validator validator = fastory.getValidator();
-
+		
 		Set<ConstraintViolation<AccountDTO>> violations = validator.validate(dto);
 
 		if (!violations.isEmpty()) {
 			ConstraintViolation<AccountDTO> v = violations.iterator().next();
-			throw new ConstraintViolationException(v.getMessage(), null);
+			
+			System.out.println("MESSAGE " + v.getMessage());
+			throw new ConstraintViolationException(v.getMessage(), Collections.singleton(v));
 		}
 	}
 }
