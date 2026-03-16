@@ -22,18 +22,18 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d '{
         "authUser": {
-            "username":"nekoNovoIme154323344",
+            "username":"1n00=00000344",
             "password":"strongPassword",
             "role":"HOST"
             },
         "account": {
-            "firstName":"Marko",
-            "lastName":"Markovic",
-            "email":"marko@gmail.com",
+            "firstName":"wewedfsdfsdsdss",
+            "lastName":"fdfdsfsdfsdf",
+            "email":"11338886@gmail.com",
             "gender":"MALE",
-            "birthdate":"1990-10-10",
+            "birthdate":"199010-10",
             "address": {
-                "country":"Neverland",
+                "country":"222222",
                 "city":"Howling Abyss",
                 "street":"Unk Lane",
                 "number":"999999"
@@ -41,7 +41,7 @@ curl -X POST \
         }
     }' \
     -i http://localhost:8081/auth/signup 
-    
+
 Grpc test
 curl -i http://localhost:8081/greet?name=Gaze
 ```

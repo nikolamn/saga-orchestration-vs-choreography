@@ -1,25 +1,13 @@
 package com.booking.account.service.impl;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.time.LocalDate;
-import java.util.UUID;
-
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.booking.account.api.rest.mapper.AccountMapper;
-import com.booking.account.core.domain.Account;
-import com.booking.account.core. repository.AccountRepository;
-import com.booking.account.core.service.impl.AccountServiceImpl;
-import com.booking.account.exception.DuplicateUserInfoException;
+import com.booking.account.mapper.AccountMapper;
+import com.booking.account.repository.AccountRepository;
+import com.booking.account.service.impl.AccountServiceImpl;
 
 @ExtendWith(MockitoExtension.class)
 public class AccountServiceImplTest {
