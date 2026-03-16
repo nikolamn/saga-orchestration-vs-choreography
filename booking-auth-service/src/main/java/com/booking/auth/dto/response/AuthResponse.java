@@ -3,12 +3,13 @@ package com.booking.auth.dto.response;
 import lombok.Getter;
 
 @Getter
-public class UserAuthResponse {
+public class AuthResponse {
 	
+	private String message = "Login successful";
 	private String accessToken;
     private String tokenType = "Bearer";
     
-    public UserAuthResponse(String accessToken) {
+    public AuthResponse(String accessToken) {
         this.accessToken = accessToken;
     }
 }

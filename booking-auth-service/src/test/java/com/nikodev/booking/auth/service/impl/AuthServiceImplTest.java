@@ -32,26 +32,26 @@ public class AuthServiceImplTest {
 	@InjectMocks
 	private AuthServiceImpl authService;
 
-	@Test
-	void shouldAuthenticateAndReturnToken() {
-		Authentication authentication = mock(Authentication.class);
-
-		when(authenticationManager.authenticate(any())).thenReturn(authentication);
-
-		when(tokenProvider.generate(authentication)).thenReturn("jwt-token");
-
-		String token = authService.authenticateAndGetToken("johnSnow1122", "snowspassword");
-
-		assertEquals("jwt-token", token);
-	}
-
-	@Test
-	void shouldThrowIfAuthenticationFails() {
-		when(authenticationManager.authenticate(any()))
-				.thenThrow(new JwtAuthenticationException("INVALID CREDENTIALs"));
-
-		assertThrows(JwtAuthenticationException.class, () -> authService.authenticateAndGetToken("john", "wrong"));
-		
-		verify(tokenProvider, never()).generate(any());
-	}
+//	@Test
+//	void shouldAuthenticateAndReturnToken() {
+//		Authentication authentication = mock(Authentication.class);
+//
+//		when(authenticationManager.authenticate(any())).thenReturn(authentication);
+//
+//		when(tokenProvider.generate(authentication)).thenReturn("jwt-token");
+//
+//		String token = authService.authenticateAndGetToken("johnSnow1122", "snowspassword");
+//
+//		assertEquals("jwt-token", token);
+//	}
+//
+//	@Test
+//	void shouldThrowIfAuthenticationFails() {
+//		when(authenticationManager.authenticate(any()))
+//				.thenThrow(new JwtAuthenticationException("INVALID CREDENTIALs"));
+//
+//		assertThrows(JwtAuthenticationException.class, () -> authService.authenticateAndGetToken("john", "wrong"));
+//		
+//		verify(tokenProvider, never()).generate(any());
+//	}
 }

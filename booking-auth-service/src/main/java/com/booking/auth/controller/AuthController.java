@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.booking.auth.dto.request.UserRegistrationRequest;
-import com.booking.auth.dto.response.UserAuthResponse;
+import com.booking.auth.dto.request.AuthRequest;
+import com.booking.auth.dto.request.SignupRequest;
+import com.booking.auth.dto.response.AuthResponse;
+import com.booking.auth.dto.response.SignupResponse;
+import com.booking.auth.service.AuthService;
 import com.booking.auth.service.RegistrationService;
 
 import jakarta.validation.Valid;
@@ -18,15 +21,22 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RequestMapping("/auth")
 public class AuthController {
-	
-	private final RegistrationService registrationService;
-	
-	@PostMapping("/signup")
-	public ResponseEntity<UserAuthResponse> signup(@RequestBody @Valid UserRegistrationRequest request) {
-		
-		String token =  registrationService.signup(request);
 
-		return ResponseEntity.status(HttpStatus.CREATED)
-	            .body(new UserAuthResponse(token));
+	// Orchestrator
+	private final RegistrationService registrationService;
+	private final AuthService authService;
+
+	@PostMapping("/signup")
+	public ResponseEntity<SignupResponse> signup(@RequestBody @Valid SignupRequest request) {
+		registrationService.register(request.getAuthUser(), request.getAccount());
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(new SignupResponse());
+	}
+
+	@PostMapping("/signin")
+	public ResponseEntity<AuthResponse> authenticate(@RequestBody @Valid AuthRequest request) {
+		String token = authService.authenticate(request.getUsername(), request.getPassword());
+
+		return ResponseEntity.status(HttpStatus.OK).body(new AuthResponse(token));
 	}
 }

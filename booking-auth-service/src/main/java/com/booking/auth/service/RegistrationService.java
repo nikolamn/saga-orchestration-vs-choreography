@@ -1,8 +1,9 @@
 package com.booking.auth.service;
 
-import com.booking.auth.dto.request.UserRegistrationRequest;
+import com.booking.auth.dto.common.AccountDTO;
+import com.booking.auth.dto.common.UserDTO;
 
 public interface RegistrationService {
 
-	public String signup(UserRegistrationRequest request);
+	void register(UserDTO authUser, AccountDTO account);
 }

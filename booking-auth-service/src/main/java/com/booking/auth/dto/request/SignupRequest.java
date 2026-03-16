@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class UserRegistrationRequest {
+public class SignupRequest {
 
     @Valid
     @NotNull

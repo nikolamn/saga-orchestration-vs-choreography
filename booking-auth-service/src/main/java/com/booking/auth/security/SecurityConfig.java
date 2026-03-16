@@ -27,7 +27,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/actuator/health/**").permitAll()
-                        .requestMatchers("/greet").permitAll()
                         .anyRequest().authenticated()
                 );
         return http.build();
@@ -37,11 +36,4 @@ public class SecurityConfig {
 	PasswordEncoder passwordEncoder() {
 		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
-	
-//	@Bean
-//	public GrpcAuthenticationReader grpcAuthenticationReader() {
-//	    return (call, headers) -> {
-//	        return null; 
-//	    };
-//	}
 }

@@ -1,7 +1,5 @@
 package com.booking.auth.dto.common;
 
-import com.booking.auth.enums.ERole;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
