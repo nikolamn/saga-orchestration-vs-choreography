@@ -8,6 +8,7 @@ import com.booking.accommodation.mapper.AccommodationMapper;
 import com.booking.accommodation.repository.AccommodationRepository;
 import com.booking.accommodation.service.AccommodationService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -18,6 +19,7 @@ public class AccommodationServiceImpl implements AccommodationService {
 	private final AccommodationMapper mapper;
 	
 	@Override
+	@Transactional
 	public void save(AccommodationDTO dto) {
 		Accommodation entity = mapper.toDomain(dto);
 		

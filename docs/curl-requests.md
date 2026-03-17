@@ -83,4 +83,15 @@ curl -X POST \
 ```bash
 curl -X GET -i http://localhost:8080/reservation/actuator/health
 curl -X GET -i http://localhost:8084/actuator/health
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "accommodationId":"2ae2dae2-9136-417a-beee-707dd14c6236",
+        "userId":"2ae2dae2-9136-433a-beee-707dd14c6236",
+        "description":"fdfdsfsdfsdf",
+        "beginning":"2026-10-10",
+        "ending":"2026-11-10",
+        "guests":"2"
+    }' \
+    -i http://localhost:8084/reservation/new 
 ```
