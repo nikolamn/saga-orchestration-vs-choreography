@@ -22,20 +22,20 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -d '{
         "authUser": {
-            "username":"1n00=00000344",
+            "username":"nekod4d331154999344",
             "password":"strongPassword",
             "role":"HOST"
             },
         "account": {
             "firstName":"wewedfsdfsdsdss",
             "lastName":"fdfdsfsdfsdf",
-            "email":"11338886@gmail.com",
+            "email":"11224111@gmail.com",
             "gender":"MALE",
-            "birthdate":"199010-10",
+            "birthdate":"1990-10-10",
             "address": {
                 "country":"222222",
-                "city":"Howling Abyss",
-                "street":"Unk Lane",
+                "city":"",
+                "street":"",
                 "number":"999999"
             }
         }
@@ -60,6 +60,23 @@ curl -X POST \
 ```bash
 curl -X GET -i http://localhost:8080/accommodation/actuator/health
 curl -X GET -i http://localhost:8083/actuator/health
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+        "name":"wewedfsdfsdsdss",
+        "description":"fdfdsfsdfsdf",
+        "address": {
+            "country":"222222",
+            "city":"sddsad",
+            "street":"sadsad",
+            "number":"999999"
+        },
+        "amenities":["WIFI", "BATH_TUB"],
+        "ownerId":"2ee2dae2-7936-417a-beee-707dd14c6236",
+        "minNumberOfGuests":"2",
+        "maxNumberOfGuests":"4"
+    }' \
+    -i http://localhost:8083/accommodation/new 
 ```
 
 ## Reservation Service
