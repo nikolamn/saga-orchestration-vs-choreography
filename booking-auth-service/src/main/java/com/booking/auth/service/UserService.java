@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.booking.auth.domain.User;
+import com.booking.auth.dto.common.UpdateUserDTO;
 import com.booking.auth.dto.common.UserDTO;
 
 public interface UserService {
@@ -13,4 +14,6 @@ public interface UserService {
 	Optional<User> getByUsername(String username);
 
 	void delete(UUID userId);
+
+	void update(UpdateUserDTO dto, UUID userId);
 }

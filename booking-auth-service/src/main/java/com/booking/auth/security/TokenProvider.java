@@ -3,6 +3,7 @@ package com.booking.auth.security;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +15,7 @@ import javax.crypto.SecretKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
@@ -73,5 +75,22 @@ public class TokenProvider {
 		} catch (Exception e) {
 			return Optional.empty();
 		}
+	}
+	
+	public String extractSubject(String token) {
+		return validateTokenAndGetJws(token)
+				.map(jws -> jws.getPayload().getSubject())
+				.orElse(null);
+	}
+	
+	public List<SimpleGrantedAuthority> extractAuthorities(Claims claims) {
+	    Object roleClaim = claims.get("role");
+	    if (roleClaim instanceof List<?> list) {
+	        return list.stream()
+	                .filter(String.class::isInstance)
+	                .map(obj -> new SimpleGrantedAuthority((String) obj))
+	                .toList();
+	    }
+	    return Collections.emptyList();
 	}
 }

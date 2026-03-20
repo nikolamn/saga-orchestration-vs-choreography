@@ -25,6 +25,11 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ApiErrorResponse> handleInvalidConstraint(ConstraintViolationException ex) {
 		return buildResponse(HttpStatus.BAD_REQUEST, "INVALID FORMAT");
 	}
+	
+	@ExceptionHandler(IllegalArgumentException.class)
+	public ResponseEntity<ApiErrorResponse> handleIllegalArgument(IllegalArgumentException ex) {
+	    return buildResponse(HttpStatus.BAD_REQUEST, "ILLEGAL ARGUMENT: " + ex.getMessage());
+	}
 
 	@ExceptionHandler(DataIntegrityViolationException.class)
 	public ResponseEntity<ApiErrorResponse> handleDataIntegrityViolation(DataIntegrityViolationException ex) {

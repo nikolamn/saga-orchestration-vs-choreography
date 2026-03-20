@@ -1,5 +1,6 @@
 package com.booking.account.repository.impl;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,4 +14,6 @@ public interface AccountRepositoryJpa extends JpaRepository<Account, UUID>{
 	boolean existsByUserId(UUID authUserId);
 	
 	boolean existsByEmail(String email);
+	
+	Optional<Account> findByUserId(UUID userId);
 }

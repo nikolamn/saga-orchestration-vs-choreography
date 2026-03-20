@@ -14,7 +14,7 @@ public class SignupRequest {
 
     @Valid
     @NotNull
-	private final UserDTO authUser;
+	private final UserDTO user;
     
     @Valid
     @NotNull

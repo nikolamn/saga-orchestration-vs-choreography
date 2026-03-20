@@ -1,5 +1,6 @@
 package com.booking.account.grpc.exception;
 
+import com.booking.account.exception.AccountNotFoundException;
 import com.booking.account.exception.DuplicateUserInfoException;
 import com.booking.account.exception.ValidationException;
 
@@ -30,6 +31,13 @@ public class GrpcGlobalExceptionHandler {
 	@GrpcExceptionHandler(ValidationException.class)
 	public StatusRuntimeException handleValidationException(ValidationException ex) {
 		return Status.INVALID_ARGUMENT
+				.withDescription(ex.getMessage())
+				.asRuntimeException();
+	}
+	
+	@GrpcExceptionHandler(AccountNotFoundException.class)
+	public StatusRuntimeException handleNotFound(AccountNotFoundException ex) {
+		return Status.NOT_FOUND
 				.withDescription(ex.getMessage())
 				.asRuntimeException();
 	}

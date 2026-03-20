@@ -10,6 +10,8 @@ option java_outer_classname = "AuthServiceProto";
 
 service AccountService {
   rpc CreateAccount(AccountCreationRequest) returns (google.protobuf.Empty);
+  
+  rpc UpdateAccount(AccountUpdateRequest) returns (google.protobuf.Empty);
 }
 
 message AccountCreationRequest {
@@ -27,4 +29,21 @@ message Address {
   string city = 2;
   string street = 3;
   string number = 4;
+}
+
+message AccountUpdateRequest {
+  string auth_user_id = 1;
+  optional string first_name = 2;
+  optional string last_name = 3;
+  optional string gender = 4;
+  optional string birthdate = 5;
+  optional string email = 6;
+  optional AddressUpdate address = 7;
+}
+
+message AddressUpdate {
+  optional string country = 1;
+  optional string city = 2;
+  optional string street = 3;
+  optional string number = 4;
 }

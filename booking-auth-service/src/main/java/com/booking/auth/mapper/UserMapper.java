@@ -3,17 +3,16 @@ package com.booking.auth.mapper;
 import org.springframework.stereotype.Component;
 
 import com.booking.auth.domain.User;
-import com.booking.auth.dto.common.UserDTO;
 import com.booking.auth.enums.ERole;
 
 @Component
 public class UserMapper {
 
-	public User toDomain(UserDTO dto, String hash) {
+	public User toDomain(String username, String hash, String role) {
 		return User.builder()
-				.username(dto.getUsername())
+				.username(username)
 				.passwordHash(hash)
-				.role(ERole.toEnum(dto.getRole()))
+				.role(ERole.toEnum(role))
 				.build();
 	};
 }
