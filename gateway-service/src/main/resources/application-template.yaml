@@ -7,40 +7,16 @@ spring:
         webflux:
           routes:
             - id: auth-service
-              uri: ${AUTH_SERVICE_URL:http://localhost:8081}
+              uri: ${AUTH_SERVICE_URL}
               predicates:
-                - Path=/auth/**
+                - Path=/signin, /signup
               filters:
-               - StripPrefix=1
+               - RewritePath=/signin, /auth/signin
+               - RewritePath=/signup, /auth/signup
 
             - id: account-service
-              uri: ${ACCOUNT_SERVICE_URL:http://localhost:8082}
+              uri: ${ACCOUNT_SERVICE_URL}
               predicates:
-                - Path=/account/**
-              filters:
-                - StripPrefix=1
-
-            - id: accommodation-service
-              uri: ${ACCOMMODATION_SERVICE_URL:http://localhost:8083}
-              predicates:
-                - Path=/accommodation/**
-              filters:
-                - StripPrefix=1
-
-            - id: reservation-service
-              uri: ${RESERVATION_SERVICE_URL:http://localhost:8084}
-              predicates:
-                - Path=/reservation/**
-              filters:
-                - StripPrefix=1
-
+                - Path=/account, /account/delete
 server:
   port: 8080
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health
-    health:
-      show-details: always

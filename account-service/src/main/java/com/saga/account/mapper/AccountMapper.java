@@ -5,10 +5,10 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.booking.grpc.stubs.AccountCreationRequest;
 import com.saga.account.domain.Account;
 import com.saga.account.dto.common.AccountDTO;
 import com.saga.account.enums.EStatus;
+import com.saga.grpc.stubs.AccountCreationRequest;
 
 @Component
 public class AccountMapper {

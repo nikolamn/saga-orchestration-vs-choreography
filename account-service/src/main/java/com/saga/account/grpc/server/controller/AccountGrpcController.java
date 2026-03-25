@@ -1,9 +1,9 @@
-package com.saga.account.grpc.controller;
+package com.saga.account.grpc.server.controller;
 
-import com.booking.grpc.stubs.AccountCreationRequest;
-import com.booking.grpc.stubs.AccountServiceGrpc;
 import com.google.protobuf.Empty;
-import com.saga.account.grpc.service.AccountGrpcService;
+import com.saga.account.grpc.server.service.AccountGrpcService;
+import com.saga.grpc.stubs.AccountCreationRequest;
+import com.saga.grpc.stubs.AccountServiceGrpc;
 
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;

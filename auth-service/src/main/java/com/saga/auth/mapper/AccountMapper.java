@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.booking.grpc.stubs.AccountCreationRequest;
 import com.saga.auth.dto.common.AccountDTO;
+import com.saga.grpc.stubs.AccountCreationRequest;
 
 @Component
 public class AccountMapper {

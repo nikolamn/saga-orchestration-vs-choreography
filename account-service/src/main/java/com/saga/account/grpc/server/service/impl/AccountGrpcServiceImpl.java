@@ -1,4 +1,4 @@
-package com.saga.account.grpc.service.impl;
+package com.saga.account.grpc.server.service.impl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,12 +7,12 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.booking.grpc.stubs.AccountCreationRequest;
 import com.saga.account.dto.common.AccountDTO;
 import com.saga.account.exception.ValidationException;
-import com.saga.account.grpc.service.AccountGrpcService;
+import com.saga.account.grpc.server.service.AccountGrpcService;
 import com.saga.account.mapper.AccountMapper;
 import com.saga.account.service.AccountService;
+import com.saga.grpc.stubs.AccountCreationRequest;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;

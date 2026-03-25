@@ -5,7 +5,7 @@ package account;
 import "google/protobuf/empty.proto";
 
 option java_multiple_files = true;
-option java_package = "com.booking.grpc.stubs";
+option java_package = "com.saga.grpc.stubs";
 option java_outer_classname = "AccountServiceProto";
 
 service AccountService {

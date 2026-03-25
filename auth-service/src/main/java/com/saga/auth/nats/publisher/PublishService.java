@@ -26,8 +26,6 @@ public class PublishService {
     		
     		nc.publish(subject, json.getBytes(StandardCharsets.UTF_8));
     		
-            log.info("Published message to {}: {}", subject, json);
-    		
     	} catch (JsonProcessingException e) {
     		log.error("Failed to serialze payload");
     	}

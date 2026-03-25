@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.saga.auth.client.AccountServicePort;
 import com.saga.auth.dto.common.AccountDTO;
 import com.saga.auth.dto.common.UserDTO;
+import com.saga.auth.grpc.client.AccountServicePort;
 import com.saga.auth.service.RegistrationService;
 import com.saga.auth.service.UserService;
 

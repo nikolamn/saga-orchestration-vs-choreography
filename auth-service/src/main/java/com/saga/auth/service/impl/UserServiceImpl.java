@@ -49,6 +49,8 @@ public class UserServiceImpl implements UserService {
 		User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
 
 		user.setStatus(EStatus.DELETED);
+		
+		repository.save(user); 
 	}
 
 	private void checkUsernameAvailability(String username) {
@@ -59,5 +61,12 @@ public class UserServiceImpl implements UserService {
 
 	private String encodePassword(String password) {
 		return passwordEncoder.encode(password);
+	}
+	
+	@Override
+	public User getById(UUID userId) {
+		User user = repository.findById(userId).orElseThrow(() -> new UserNotFoundException("User not found"));
+		
+		return user;
 	}
 }

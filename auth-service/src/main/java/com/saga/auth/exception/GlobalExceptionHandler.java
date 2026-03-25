@@ -41,8 +41,8 @@ public class GlobalExceptionHandler {
 		return buildResponse(HttpStatus.CONFLICT, "INVALID CREDENTIALS: " + ex.getMessage());
 	}
 
-	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<ApiErrorResponse> handleNotFound(EntityNotFoundException ex) {
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ApiErrorResponse> handleNotFound(UserNotFoundException ex) {
 		return buildResponse(HttpStatus.NOT_FOUND, "NOT FOUND: " + ex.getMessage());
 	}
 
@@ -60,23 +60,16 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<ApiErrorResponse> handleInvalidJson(HttpMessageNotReadableException ex) {
 		return buildResponse(HttpStatus.BAD_REQUEST, "INVALID REQUEST: Malformed JSON");
 	}
+	
+	@ExceptionHandler(InvalidCredentialsException.class)
+	public ResponseEntity<ApiErrorResponse> handleInvalidCredentials(InvalidCredentialsException ex) {
+		return buildResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+	}
 
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ApiErrorResponse> handleInternalError(Exception ex) {
 		return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL SERVER ERROR");
 	}
-
-//	@ExceptionHandler(UnauthorizedException.class)
-//	public ResponseEntity<String> handleNotFound(UnauthorizedException ex) {
-//		return ResponseEntity.badRequest().body(ex.getMessage());
-//	}
-
-//	@ExceptionHandler(ForbiddenException.class)
-//	public ResponseEntity<String> handleForbidden(ForbiddenException ex) {
-//		return ResponseEntity.badRequest().body(ex.getMessage());
-//	} 
-
-	// + jwt exs
 
 	private ResponseEntity<ApiErrorResponse> buildResponse(HttpStatus status, String message) {
 		return ResponseEntity.status(status).body(new ApiErrorResponse(message));

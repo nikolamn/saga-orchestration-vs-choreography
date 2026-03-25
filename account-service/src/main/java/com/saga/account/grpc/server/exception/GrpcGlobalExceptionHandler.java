@@ -1,4 +1,4 @@
-package com.saga.account.grpc.exception;
+package com.saga.account.grpc.server.exception;
 
 import com.saga.account.exception.AccountNotFoundException;
 import com.saga.account.exception.DuplicateUserInfoException;

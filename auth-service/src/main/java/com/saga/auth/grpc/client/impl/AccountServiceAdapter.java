@@ -1,16 +1,16 @@
-package com.saga.auth.client.impl;
+package com.saga.auth.grpc.client.impl;
 
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.booking.grpc.stubs.AccountCreationRequest;
-import com.booking.grpc.stubs.AccountServiceGrpc;
-import com.saga.auth.client.AccountServicePort;
 import com.saga.auth.dto.common.AccountDTO;
 import com.saga.auth.exception.DuplicateUserInfoException;
 import com.saga.auth.exception.GrpcInvalidArgumentException;
+import com.saga.auth.grpc.client.AccountServicePort;
 import com.saga.auth.mapper.AccountMapper;
+import com.saga.grpc.stubs.AccountCreationRequest;
+import com.saga.grpc.stubs.AccountServiceGrpc;
 
 import io.grpc.StatusRuntimeException;
 import lombok.RequiredArgsConstructor;

@@ -32,7 +32,6 @@ public class UserDeletionServiceImpl implements UserDeletionService {
     			);
     		
     	} catch (Exception e) {
-            log.error("Failed to delete credentials for userId={}", userId, e);
 
     		publishService.publish(
     				NatsSubjects.USER_DELETION_FAILED,

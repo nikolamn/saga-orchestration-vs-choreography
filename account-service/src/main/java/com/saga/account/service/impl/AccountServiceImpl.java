@@ -8,9 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.saga.account.domain.Account;
 import com.saga.account.dto.common.AccountDTO;
 import com.saga.account.enums.EStatus;
-import com.saga.account.exception.AccountDeletedException;
 import com.saga.account.exception.AccountNotFoundException;
-import com.saga.account.exception.AccountPendingDeletionException;
 import com.saga.account.exception.DuplicateUserInfoException;
 import com.saga.account.mapper.AccountMapper;
 import com.saga.account.repository.AccountRepository;
@@ -46,23 +44,22 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void requestDeletion(UUID userId) {
 		Account account = repository.findByUserId(userId).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-		
+
 		account.setStatus(EStatus.PENDING_DELETION);
 		
 		repository.save(account);
 	}
 	
 	@Override
-	public AccountDTO getCurrentUserAccount(UUID userId) {
+	public Account getByUserId(UUID userId) {
 		Account account = repository.findByUserId(userId).orElseThrow(() -> new AccountNotFoundException("Account not found"));
 		
-		if (account.getStatus() == EStatus.PENDING_DELETION) {
-	        throw new AccountPendingDeletionException("Account is pending deletion");
-		}
-		
-		if (account.getStatus() == EStatus.DELETED) {
-			throw new AccountDeletedException("Account is deleted");
-		}
+		return account;
+	}
+	
+	@Override
+	public AccountDTO getCurrentUserAccount(UUID userId) {
+		Account account = getByUserId(userId);
 		
 		return mapper.toDTO(account);
 	}
@@ -70,14 +67,13 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void markDeleted(UUID userId) {
 		Account account = repository.findByUserId(userId).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-		log.info("Account for user id deleted: " + userId);
+
 		account.setStatus(EStatus.DELETED);
 	}
 
 	@Override
 	public void markDeletionFailed(UUID userId) {
 		Account account = repository.findByUserId(userId).orElseThrow(() -> new AccountNotFoundException("Account not found"));
-		log.info("Account for user id deleted: " + userId);
 
 		account.setStatus(EStatus.CREATED);
 	}

@@ -1,13 +1,13 @@
 package com.saga.auth.nats.subscriber;
 
 import java.nio.charset.StandardCharsets;
+import java.util.function.Consumer;
 
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.nats.client.Connection;
-import java.util.function.Consumer;
 import io.nats.client.Dispatcher;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +42,5 @@ public class SubscribeService {
                 log.error("Failed to process message on '{}'", e.getMessage());
 			}
 		});
-		
-        log.info("subscribed to subject: hello");
 	}
 }

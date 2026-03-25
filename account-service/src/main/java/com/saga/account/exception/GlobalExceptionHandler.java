@@ -1,24 +1,10 @@
 package com.saga.account.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
-import com.saga.account.dto.response.ApiErrorResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-	@ExceptionHandler(AccountPendingDeletionException.class)
-	public ResponseEntity<ApiErrorResponse> handleAccountPendingDeletion(AccountPendingDeletionException ex) {
-		return ResponseEntity.status(HttpStatus.CONFLICT).body(new ApiErrorResponse(ex.getMessage()));
-	}
-	
-	@ExceptionHandler(AccountDeletedException.class)
-	public ResponseEntity<ApiErrorResponse> handleInvalidArgument(AccountDeletedException ex) {
-		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ApiErrorResponse(ex.getMessage()));
-	}
 	
 //	@ExceptionHandler(MethodArgumentNotValidException.class)
 //	public ResponseEntity<String> handleInvalidArgument(MethodArgumentNotValidException ex) {

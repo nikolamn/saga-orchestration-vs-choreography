@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.saga.account.dto.common.AccountDTO;
+import com.saga.account.dto.response.ApiResponse;
 import com.saga.account.security.CustomUserDetails;
 import com.saga.account.service.AccountDeletionService;
 import com.saga.account.service.AccountService;
@@ -25,7 +26,7 @@ public class AccountController {
 	private final AccountDeletionService deletationService;
 	private final AccountService accountService;
 	
-	@GetMapping("/")
+	@GetMapping
 	public ResponseEntity<AccountDTO> getMyAccount(@AuthenticationPrincipal CustomUserDetails userDetails) {
 		UUID userId = userDetails.getId();
 		
@@ -37,13 +38,13 @@ public class AccountController {
 	}
 	
 	@DeleteMapping("/delete")
-	public ResponseEntity<String> deleteAccount(@AuthenticationPrincipal CustomUserDetails userDetails) {
+	public ResponseEntity<ApiResponse> deleteUserAccount(@AuthenticationPrincipal CustomUserDetails userDetails) {
 		UUID userId = userDetails.getId();
 		
 		deletationService.requestUserAccountDeletion(userId);
 		
 		return ResponseEntity
 				.status(HttpStatus.ACCEPTED)
-				.body("Account deletion pending.");
+				.body(new ApiResponse("Account deletion pending."));
 	}
 }

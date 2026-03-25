@@ -1,6 +1,6 @@
-package com.saga.account.grpc.service;
+package com.saga.account.grpc.server.service;
 
-import com.booking.grpc.stubs.AccountCreationRequest;
+import com.saga.grpc.stubs.AccountCreationRequest;
 
 public interface AccountGrpcService {
 

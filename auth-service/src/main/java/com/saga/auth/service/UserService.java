@@ -10,6 +10,8 @@ public interface UserService {
 
 	UUID save(UserDTO dto);
 	
+	User getById(UUID userId);
+	
 	Optional<User> getByUsername(String username);
 
 	void markDeleted(UUID userId);

@@ -42,7 +42,5 @@ public class SubscribeService {
                 log.error("Failed to process message on '{}'", e.getMessage());
 			}
 		});
-		
-        log.info("subscribed to subject: hello");
 	}
 }

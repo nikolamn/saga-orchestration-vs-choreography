@@ -1,4 +1,4 @@
-package com.saga.auth.client;
+package com.saga.auth.grpc.client;
 
 import java.util.UUID;
 
