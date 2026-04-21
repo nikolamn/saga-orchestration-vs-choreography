@@ -169,6 +169,6 @@ curl -X GET -i http://localhost:8080/account \
 ### Delete user account
 Starts the process to permanently remove a user's account from the system
 ```
-curl -X DELETE -i http://localhost:8082/account/delete  \
+curl -X DELETE -i http://localhost:8080/account/delete  \
     -H "Authorization: Bearer <TOKEN>" 
 ```
